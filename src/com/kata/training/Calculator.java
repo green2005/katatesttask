@@ -5,7 +5,7 @@ class Calculator {
 
     public String calc(String input) {
         Expression e = getParsedExpression(input);
-        int res = doCalc(e.getOperand1Value(), e.getOperand2Value(), e.getOperator());
+        int res = doCalc(e);
         if (e.getOperand1Type() == Expression.NumericType.ARABIC) {
             return Integer.toString(res);
         } else {
@@ -17,22 +17,22 @@ class Calculator {
         }
     }
 
-    private int doCalc(int operand1, int operand2, Operator operator) {
-        switch (operator) {
+    private int doCalc(Expression e) {
+        switch (e.getOperator()) {
             case DIV -> {
-                if (operand2 == 0) {
+                if (e.getOperand2Value() == 0) {
                     throw new IllegalArgumentException("Division by zero");
                 }
-                return operand1 / operand2;
+                return e.getOperand1Value() / e.getOperand2Value();
             }
             case MULT -> {
-                return operand1 * operand2;
+                return e.getOperand1Value() * e.getOperand2Value();
             }
             case PLUS -> {
-                return operand1 + operand2;
+                return e.getOperand1Value() + e.getOperand2Value();
             }
             case MINUS -> {
-                return operand1 - operand2;
+                return e.getOperand1Value() - e.getOperand2Value();
             }
             default -> {
                 return 0;
