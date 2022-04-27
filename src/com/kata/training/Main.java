@@ -12,10 +12,17 @@ public class Main {
     public static void main(String[] args) {
         //System.out.println(calc("3 - 9"));
         //System.out.println(calc("X*VI"));
-        
+
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter expression:");
-        String expr = scanner.next();
-        System.out.println(calc(expr));
+        do {
+            System.out.println("Enter expression:");
+            String expr = scanner.next();
+            System.out.println(calc(expr));
+            System.out.println("Wanna try again? y/n");
+            String response = scanner.next();
+            if (!response.equals("y")) {
+                break;
+            }
+        } while (true);
     }
 }
