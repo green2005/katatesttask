@@ -83,6 +83,10 @@ class Expression {
             operand1Value = converter.convertRomanToArabic(operand1);
             operand2Value = converter.convertRomanToArabic(operand2);
         }
+
+        if ((operand1Value<1)||(operand1Value>10)||(operand2Value<1)||(operand2Value>10)){
+            throw new IllegalArgumentException("Operands should be greater than 0 and less than 11");
+        }
     }
 
     private NumericType getOperandNumericType(String operand) {

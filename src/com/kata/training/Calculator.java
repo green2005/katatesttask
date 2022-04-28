@@ -7,10 +7,13 @@ class Calculator {
         Expression e = getParsedExpression(input);
         int res = doCalc(e);
         if (e.getOperand1Type() == Expression.NumericType.ARABIC) {
+            if (res < 0) {
+                throw new IllegalArgumentException("Result of expression with Arabic numbers should be equal or above zero");
+            }
             return Integer.toString(res);
         } else {
             if (res <= 0) {
-                throw new IllegalArgumentException("Romanian numbers should be above zero");
+                throw new IllegalArgumentException("Result of expression with Romanian numbers should be above zero");
             }
             Converter cnv = new Converter();
             return cnv.convertArabicToRoman(res);
